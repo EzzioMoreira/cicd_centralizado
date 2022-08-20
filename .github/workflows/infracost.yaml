@@ -3,31 +3,31 @@ name: Infracost exibe estimativa de custo da infraestrutura
 on:
   workflow_call:
     inputs:
-      OS_VERSION:
+      os_version:
         description: "Versão do sistema operacional"
         required: false
         default: "ubuntu-20.04"
         type: string
-      TF_DIRECTORY:
+      tf_directory:
         description: "Diretório do projeto terraform"
         required: false
         default: .
         type: string
     secrets:
-      INFRACOST_API_KEY:
+      infracost_api_key:
         description: "APIKEY do Infracost"
         required: true
 jobs:
   infracost:
     name: Infracost workflow
-    runs-on: ${{ inputs.OS_VERSION }}
+    runs-on: ${{ inputs.os_version }}
     env:
        INFRACOST_ENABLE_CLOUD: true
     steps:
       - name: Configura Infracost
         uses: infracost/actions/setup@v2
         with:
-          api-key: ${{ secrets.INFRACOST_API_KEY }}
+          api-key: ${{ secrets.infracost_api_key }}
 
       - name: Checkout base branch
         uses: actions/checkout@v2
@@ -36,7 +36,7 @@ jobs:
 
       - name: Gerando estimativa de custo atual
         run: |
-          infracost breakdown --path=${{ inputs.TF_DIRECTORY }} \
+          infracost breakdown --path=${{ inputs.tf_directory }} \
                               --format=json \
                               --out-file=/tmp/infracost-base.json
 
@@ -45,7 +45,7 @@ jobs:
 
       - name: Gerando diferença de custo em relação à branch atual
         run: |
-          infracost diff --path=${{ inputs.TF_DIRECTORY }} \
+          infracost diff --path=${{ inputs.tf_directory }} \
                           --format=json \
                           --compare-to=/tmp/infracost-base.json \
                           --out-file=/tmp/infracost.json
