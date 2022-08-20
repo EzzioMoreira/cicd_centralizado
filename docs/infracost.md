@@ -1,5 +1,5 @@
 # Infracost
-O Infracost mostra as estimativas de custo dos recursos que serão provisionados via Terraform. Ele permite que DevOps, SRE e engenheiros vejam com detalhamento os custos estimado dos recursos antes de serem implantados na infraestrutura.
+O Infracost mostra as estimativas de custo dos recursos que serão provisionados via Terraform. Ele permite que as equipes de DevOps, SRE e engenharia vejam com detalhamento os custos estimado dos recursos antes de serem implantados na infraestrutura.
 
 ## Inputs
 | Nome | Descrição | Requirida | Default |
