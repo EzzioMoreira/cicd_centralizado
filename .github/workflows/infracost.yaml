@@ -34,7 +34,7 @@ jobs:
         with:
           ref: '${{ github.event.pull_request.base.ref }}'
 
-      - name: Gerando arquivo Infracost custo estimado
+      - name: Gerando estimativa de custo atual
         run: |
           infracost breakdown --path=${{ inputs.TF_DIRECTORY }} \
                               --format=json \
