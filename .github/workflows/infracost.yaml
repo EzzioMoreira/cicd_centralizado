@@ -6,7 +6,7 @@ on:
       OS_VERSION:
         description: "Versão do sistema operacional"
         required: false
-        default: "ubuntu-latest"
+        default: "ubuntu-20.04"
         type: string
       TF_DIRECTORY:
         description: "Diretório do projeto terraform"
