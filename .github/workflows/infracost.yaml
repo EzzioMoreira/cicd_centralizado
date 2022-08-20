@@ -43,8 +43,7 @@ jobs:
       - name: Checkout PR branch
         uses: actions/checkout@v2
 
-      # Generate an Infracost diff and save it to a JSON file.
-      - name: Gerando diff Infracost
+      - name: Gerando diferença de custo em relação à branch atual
         run: |
           infracost diff --path=${{ inputs.TF_DIRECTORY }} \
                           --format=json \
